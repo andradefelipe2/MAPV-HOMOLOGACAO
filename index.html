@@ -78,9 +78,29 @@ nav{position:fixed;inset:0 0 auto;z-index:50;background:color-mix(in srgb,var(--
 .sobre .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
 h2{font-size:clamp(28px,4vw,44px);line-height:1.15}
 .role{color:var(--gold);margin-top:10px;font-size:15px}
-.stat{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:12px}
-.stat b{font-family:Marcellus,serif;font-weight:400;font-size:76px;line-height:1;color:var(--gold)}
-.stat span{color:var(--mute);font-size:15px}
+.stat{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.stat b{
+  display:inline-block;
+  font-family:Inter,sans-serif;
+  font-weight:600;
+  font-size:clamp(56px,8vw,86px);
+  line-height:.9;
+  letter-spacing:-.05em;
+  color:var(--gold);
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1,"lnum" 1;
+}
+.stat b .plus{
+  font-size:.44em;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:0;
+  color:var(--gold2);
+  vertical-align:.7em;
+  margin-right:.03em;
+}
+.stat b [data-count]{display:inline-block;min-width:2ch}
+.stat > span{color:var(--mute);font-size:15px;line-height:1.35}
 .sobre p.t{font-size:18px;color:var(--mute);max-width:56ch}
 .pill{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
 .pill div{border-top:1px solid var(--line);padding-top:16px}
@@ -208,7 +228,7 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
   <div>
     <h2 class="rv">Maria Amélia Pereira Veiga</h2>
     <p class="role rv">Corretora de seguros e consultora financeira</p>
-    <div class="stat rv"><b>+<span data-count="20">20</span></b><span>anos de experiência</span></div>
+    <div class="stat rv"><b><span class="plus">+</span><span data-count="20">20</span></b><span>anos de experiência</span></div>
   </div>
   <div>
     <p class="t rv">Especializada em proteção patrimonial e pessoal. O trabalho começa sempre pela mesma pergunta: o que realmente importa proteger na sua rotina? A partir disso, a indicação de cobertura e planejamento fica sob medida, sem pacote genérico nem venda empurrada.</p>
@@ -303,12 +323,28 @@ var po=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 ps.forEach(function(p){po.observe(p)});setOn(0);
 bs.forEach(function(b){b.onclick=function(){ps[+b.dataset.n].scrollIntoView({behavior:'smooth',block:'center'})}});
 
-// reveal e contador
-function count(el){var end=+el.dataset.count,t0=performance.now();
- (function tick(t){var p=Math.min((t-t0)/1600,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(t0)}
+// contador 0 -> 20
+function count(el){
+  var end=+el.dataset.count||0;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=end;return}
+  var dur=1900,t0=null;
+  function tick(t){
+    if(t0===null)t0=t;
+    var p=Math.min((t-t0)/dur,1);
+    el.textContent=Math.round(end*(1-Math.pow(1-p,4)));
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+var co=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;
+  count(e.target);co.unobserve(e.target);
+})},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(function(el){el.textContent='0';co.observe(el)});
+
+// reveal
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;
- e.target.classList.add('in');var c=e.target.querySelector('[data-count]');if(c&&!matchMedia('(prefers-reduced-motion: reduce)').matches){c.textContent=0;count(c)}
- io.unobserve(e.target)})},{threshold:.3});
+ e.target.classList.add('in');io.unobserve(e.target)})},{threshold:.3});
 document.querySelectorAll('.rv,#steps').forEach(function(el){io.observe(el)});
 </script>
 </body>
