@@ -80,7 +80,7 @@ nav{position:fixed;inset:0 0 auto;z-index:50;background:color-mix(in srgb,var(--
 .ck{fill:none;stroke:var(--gold2);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .8s ease 1.9s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 
-/* hero tags - faixa de coberturas */
+/* hero tags */
 .hero-tags{
   list-style:none;
   display:grid;
@@ -109,11 +109,7 @@ h2{font-size:clamp(28px,4vw,44px);line-height:1.15}
 
 /* selo +20 anos */
 .cred{display:flex;align-items:center;gap:26px;margin-top:44px;padding-top:34px;border-top:1px solid var(--line)}
-.seal{
-  width:132px;height:132px;flex:none;position:relative;
-  display:grid;place-items:center;
-  color:var(--gold);
-}
+.seal{width:132px;height:132px;flex:none;position:relative;display:grid;place-items:center;color:var(--gold)}
 .seal-ring{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;color:var(--gold)}
 .seal-core{position:relative;z-index:1;text-align:center;line-height:1}
 .seal-num{
@@ -124,11 +120,7 @@ h2{font-size:clamp(28px,4vw,44px);line-height:1.15}
 }
 .seal-num .plus{font-size:.5em;font-weight:500;color:var(--gold2);letter-spacing:0;margin-top:.28em;margin-right:2px}
 .seal-num [data-count]{display:inline-block;min-width:2ch;text-align:center}
-.seal-lbl{
-  font-size:9px;font-weight:600;letter-spacing:.36em;
-  text-transform:uppercase;color:var(--gold);
-  margin-top:9px;padding-left:.36em;
-}
+.seal-lbl{font-size:9px;font-weight:600;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-top:9px;padding-left:.36em}
 .cred-txt b{display:block;font-family:Marcellus,serif;font-weight:400;font-size:23px;line-height:1.15;color:var(--tx);letter-spacing:-.01em}
 .cred-txt span{display:block;font-size:14px;color:var(--mute);margin-top:5px;line-height:1.55;max-width:26ch}
 
@@ -138,32 +130,119 @@ h2{font-size:clamp(28px,4vw,44px);line-height:1.15}
 .pill h3{font-size:18px;margin-bottom:6px}
 .pill p{font-size:14px;color:var(--mute)}
 
-/* coberturas */
+/* coberturas — janela tipo navegador */
 .cob{background:var(--bg2);border-block:1px solid var(--line)}
-.cob-h{max-width:560px;margin-bottom:56px}
+.cob-h{max-width:560px;margin-bottom:48px}
 .cob-h p{color:var(--mute);margin-top:14px}
-.cv{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px}
-.side{position:sticky;top:96px;align-self:start}
-.big{width:120px;height:120px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold);position:relative;margin-bottom:28px}
-.big::after{content:"";position:absolute;inset:-12px;border-radius:50%;border:1px solid var(--line)}
-.big svg{width:48px;height:48px}
-.big svg{transition:opacity .25s}
-.prog{height:2px;background:var(--line);margin:0 0 20px;position:relative}
-.prog i{position:absolute;inset:0 auto 0 0;width:0;background:var(--gold);transition:width .5s ease}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips button{display:flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--line);background:none;color:var(--mute);border-radius:99px;font:500 13.5px Inter,sans-serif;cursor:pointer;transition:all .25s}
-.chips button svg{width:15px;height:15px}
-.chips button.on{background:linear-gradient(135deg,var(--gold2),var(--gold));border-color:transparent;color:#1A1305}
-.panels{display:flex;flex-direction:column}
-.panel{min-height:64vh;display:flex;flex-direction:column;justify-content:center;padding:36px 0;border-top:1px solid var(--line);opacity:.3;transition:opacity .5s}
-.panel.on{opacity:1}
-.panel small{color:var(--gold);font-size:13px;font-weight:600}
-.panel h3{font-size:clamp(30px,4vw,46px);margin:8px 0 16px}
-.panel .d{font-size:18px;max-width:46ch}
-.why{margin-top:26px;padding-left:18px;border-left:2px solid var(--gold);max-width:52ch}
-.why b{display:block;font-size:14px;color:var(--gold);margin-bottom:4px}
-.why p{color:var(--mute);font-size:15px}
-.more{margin-top:26px;font-weight:600;color:var(--gold2);text-decoration:none;border-bottom:1px solid var(--line);align-self:flex-start;padding-bottom:2px}
+
+.browser{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--bg);
+  overflow:hidden;
+  box-shadow:0 40px 70px -40px rgba(0,0,0,.55);
+}
+:root[data-theme=light] .browser{box-shadow:0 30px 55px -38px rgba(23,33,25,.22)}
+
+.browser-top{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 18px;
+  background:var(--bg2);
+  border-bottom:1px solid var(--line);
+}
+.dots{display:flex;gap:6px;flex:none}
+.dots i{width:9px;height:9px;border-radius:50%;display:block;background:rgba(159,176,164,.35)}
+.dots i:nth-child(1){background:rgba(176,141,79,.7)}
+.dots i:nth-child(2){background:rgba(211,183,120,.55)}
+.browser-title{
+  font-size:12.5px;color:var(--mute);letter-spacing:.02em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.browser-title b{color:var(--gold);font-weight:500}
+
+.tabbar{
+  display:flex;gap:4px;
+  padding:8px 10px 0;
+  background:var(--bg2);
+  border-bottom:1px solid var(--line);
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.tabbar::-webkit-scrollbar{display:none}
+.tabbar button{
+  position:relative;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 16px;
+  border:1px solid transparent;
+  border-bottom:0;
+  border-radius:10px 10px 0 0;
+  background:transparent;
+  color:var(--mute);
+  font:500 13.5px Inter,sans-serif;
+  cursor:pointer;
+  white-space:nowrap;
+  flex:none;
+  transition:color .2s,background .2s,border-color .2s;
+}
+.tabbar button svg{width:15px;height:15px;transition:color .2s}
+.tabbar button:hover{color:var(--tx);background:rgba(176,141,79,.07)}
+.tabbar button.on{
+  background:var(--bg);
+  border-color:var(--line);
+  color:var(--tx);
+}
+.tabbar button.on svg{color:var(--gold)}
+.tabbar button.on::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:0;height:2px;
+  background:var(--gold);border-radius:2px 2px 0 0;
+}
+
+.view{
+  padding:clamp(28px,4.5vw,56px) clamp(22px,4.5vw,56px) clamp(34px,4.5vw,56px);
+  min-height:440px;
+  background:
+    radial-gradient(ellipse 60% 60% at 100% 0%, rgba(211,183,120,.06), transparent 60%);
+}
+.panel{display:none}
+.panel.on{display:block;animation:fade .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.panel-head{display:flex;align-items:center;gap:18px;margin-bottom:24px}
+.panel-ico{
+  width:56px;height:56px;border-radius:50%;flex:none;
+  border:1px solid var(--line);
+  background:rgba(176,141,79,.07);
+  display:grid;place-items:center;
+  color:var(--gold);
+}
+.panel-ico svg{width:25px;height:25px}
+.panel-eyebrow{
+  display:block;font-size:11px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:6px;
+}
+.panel h3{font-size:clamp(26px,3.4vw,38px);line-height:1.08;letter-spacing:-.01em}
+.panel .d{font-size:17px;max-width:58ch;line-height:1.72}
+.why{
+  margin-top:26px;padding:20px 24px;max-width:62ch;
+  border-left:2px solid var(--gold);
+  background:rgba(176,141,79,.05);
+  border-radius:0 12px 12px 0;
+}
+.why b{
+  display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;font-weight:600;
+}
+.why p{color:var(--mute);font-size:15px;line-height:1.72}
+.more{
+  margin-top:30px;
+  display:inline-flex;align-items:center;gap:9px;
+  font-weight:600;font-size:15px;color:var(--gold2);
+  text-decoration:none;border-bottom:1px solid var(--line);
+  padding-bottom:4px;transition:gap .2s,border-color .2s;
+}
+.more:hover{gap:13px;border-color:var(--gold)}
+.more svg{width:16px;height:16px}
 
 /* passos */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;position:relative}
@@ -189,7 +268,7 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
 .wa{position:fixed;right:20px;bottom:calc(22px + env(safe-area-inset-bottom,0));width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.35);z-index:60}
 .wa svg{width:30px;height:30px;fill:#fff}
 
-/* reveal só onde importa */
+/* reveal */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .8s,transform .8s}
 .rv.in{opacity:1;transform:none}
 
@@ -205,13 +284,8 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
 }
 @media(max-width:860px){
  .links{display:none}
- .sobre .wrap,.ct .wrap,.cv{grid-template-columns:1fr;gap:40px}
+ .sobre .wrap,.ct .wrap{grid-template-columns:1fr;gap:40px}
  .sec{padding:80px 0}
- .side{top:64px;z-index:5;background:var(--bg2);padding:12px 0 4px;margin:0 -24px;padding-inline:24px}
- .big,.prog{display:none}
- .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
- .chips button{flex:none}
- .panel{min-height:55vh}
  .pill,.steps{grid-template-columns:1fr}
  .steps::before{display:none}
  .steps li{padding:0 0 32px 36px}
@@ -223,11 +297,22 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
  .seal-lbl{font-size:8px;letter-spacing:.3em;margin-top:7px}
  .cred-txt b{font-size:19px}
  .cred-txt span{font-size:13px}
+ .browser{border-radius:12px}
+ .browser-top{padding:10px 14px}
+ .tabbar{padding:6px 8px 0}
+ .tabbar button{padding:10px 13px;font-size:13px}
+ .view{min-height:0}
+ .panel-head{gap:14px;margin-bottom:18px}
+ .panel-ico{width:46px;height:46px}
+ .panel-ico svg{width:21px;height:21px}
+ .panel .d{font-size:16px}
+ .why{padding:16px 18px}
 }
 @media(prefers-reduced-motion:reduce){
  *{animation:none!important;transition:none!important}
  .hero h1 .w i{transform:none}.sh path,.ck{stroke-dashoffset:0}.rv{opacity:1;transform:none}
  .steps li::after{transform:scale(1)}
+ .panel.on{animation:none}
 }
 </style>
 </head>
@@ -311,14 +396,18 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
 </div></section>
 
 <section class="sec cob" id="coberturas"><div class="wrap">
-  <div class="cob-h"><h2 class="rv">Camadas de proteção, de dentro pra fora</h2><p class="rv">Tudo começa em você. Cada cobertura é uma camada a mais entre a sua rotina e o imprevisto.</p></div>
-  <div class="cv">
-    <div class="side">
-      <div class="big" id="big"></div>
-      <div class="prog"><i id="prog"></i></div>
-      <div class="chips" id="chips"></div>
+  <div class="cob-h">
+    <h2 class="rv">Camadas de proteção, de dentro pra fora</h2>
+    <p class="rv">Tudo começa em você. Cada cobertura é uma camada a mais entre a sua rotina e o imprevisto.</p>
+  </div>
+
+  <div class="browser rv">
+    <div class="browser-top">
+      <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="browser-title" id="btitle">coberturas · <b>Amélia Veiga</b></span>
     </div>
-    <div class="panels" id="panels"></div>
+    <div class="tabbar" id="chips" role="tablist" aria-label="Coberturas"></div>
+    <div class="view" id="panels"></div>
   </div>
 </div></section>
 
@@ -363,17 +452,41 @@ var COB=[
  {i:'sprout',t:'Previdência Privada',g:'Futuro',d:'Complementa a aposentadoria pública, com aportes programados que rendem ao longo do tempo.',w:'A previdência pública sozinha raramente mantém o padrão de vida desejado na aposentadoria. Começar cedo, mesmo com aportes pequenos, faz diferença grande no valor acumulado lá na frente.'},
  {i:'clipboard-list',t:'Consultoria',g:'O plano',d:'Análise personalizada da sua situação (seguros existentes, patrimônio e objetivos) pra montar um plano de proteção sob medida.',w:'Cada família tem prioridades diferentes. A consultoria evita contratar cobertura genérica ou redundante, otimizando o que você já paga em vez de simplesmente somar mais um produto.'}
 ];
+
 var WA='https://wa.me/5511996917045?text=';
-var panels=document.getElementById('panels'),chips=document.getElementById('chips'),big=document.getElementById('big'),prog=document.getElementById('prog');
+var tabs=document.getElementById('chips');
+var panels=document.getElementById('panels');
+var btitle=document.getElementById('btitle');
+
+function shortName(t){
+  return t.replace('Seguro ','').replace(' Privada','').replace(' Financeira','');
+}
+
 COB.forEach(function(c,n){
- panels.insertAdjacentHTML('beforeend','<article class="panel" data-n="'+n+'"><small>'+c.g+'</small><h3>'+c.t+'</h3><p class="d">'+c.d+'</p><div class="why"><b>Por que importa</b><p>'+c.w+'</p></div><a class="more" href="'+WA+encodeURIComponent('Olá, Amélia! Gostaria de conversar sobre '+c.t+'.')+'" target="_blank" rel="noopener">Quero falar sobre esta cobertura</a></article>');
- chips.insertAdjacentHTML('beforeend','<button type="button" data-n="'+n+'"><i data-lucide="'+c.i+'"></i>'+c.t.replace('Seguro ','').replace(' Privada','').replace(' Financeira','')+'</button>');
- big.insertAdjacentHTML('beforeend','<i data-lucide="'+c.i+'" style="position:absolute;opacity:0" data-b="'+n+'"></i>');
+  tabs.insertAdjacentHTML('beforeend',
+    '<button type="button" role="tab" id="tab-'+n+'" aria-controls="panel-'+n+'" aria-selected="false" tabindex="-1" data-n="'+n+'">'
+    +'<i data-lucide="'+c.i+'"></i>'+shortName(c.t)+
+    '</button>'
+  );
+  panels.insertAdjacentHTML('beforeend',
+    '<article class="panel" role="tabpanel" id="panel-'+n+'" aria-labelledby="tab-'+n+'" data-n="'+n+'">'
+      +'<div class="panel-head">'
+        +'<span class="panel-ico"><i data-lucide="'+c.i+'"></i></span>'
+        +'<div><small class="panel-eyebrow">'+c.g+'</small><h3>'+c.t+'</h3></div>'
+      +'</div>'
+      +'<p class="d">'+c.d+'</p>'
+      +'<div class="why"><b>Por que importa</b><p>'+c.w+'</p></div>'
+      +'<a class="more" href="'+WA+encodeURIComponent('Olá, Amélia! Gostaria de conversar sobre '+c.t+'.')+'" target="_blank" rel="noopener">Quero falar sobre esta cobertura<i data-lucide="arrow-right"></i></a>'
+    +'</article>'
+  );
 });
 if(window.lucide)lucide.createIcons();
 
 // tema
-document.getElementById('tt').onclick=function(){var r=document.documentElement,n=r.getAttribute('data-theme')==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('av-theme',n)}catch(e){}};
+document.getElementById('tt').onclick=function(){
+  var r=document.documentElement,n=r.getAttribute('data-theme')==='dark'?'light':'dark';
+  r.setAttribute('data-theme',n);try{localStorage.setItem('av-theme',n)}catch(e){}
+};
 
 // título do hero, palavra por palavra
 (function(){var h=document.getElementById('h1'),i=0;
@@ -384,14 +497,38 @@ document.getElementById('tt').onclick=function(){var r=document.documentElement,
   else if(c.nodeType===1)walk(c)})}
  walk(h)})();
 
-// cobertura ativa conforme o scroll
-var ps=[].slice.call(document.querySelectorAll('.panel')),bs=[].slice.call(chips.children),bg=[].slice.call(big.children);
-function setOn(n){ps.forEach(function(p,k){p.classList.toggle('on',k===n)});bs.forEach(function(b,k){b.classList.toggle('on',k===n)});
- bg.forEach(function(b,k){b.style.opacity=k===n?1:0});prog.style.width=((n+1)/COB.length*100)+'%';
- if(matchMedia('(max-width:860px)').matches){bs[n].scrollIntoView({inline:'center',block:'nearest'})}}
-var po=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setOn(+e.target.dataset.n)})},{rootMargin:'-42% 0px -42% 0px'});
-ps.forEach(function(p){po.observe(p)});setOn(0);
-bs.forEach(function(b){b.onclick=function(){ps[+b.dataset.n].scrollIntoView({behavior:'smooth',block:'center'})}});
+// ---- navegador de coberturas ----
+var tabEls=[].slice.call(tabs.children);
+var panEls=[].slice.call(panels.children);
+
+function setOn(n,scrollTab){
+  tabEls.forEach(function(b,k){
+    var on=k===n;
+    b.classList.toggle('on',on);
+    b.setAttribute('aria-selected',on?'true':'false');
+    b.tabIndex=on?0:-1;
+  });
+  panEls.forEach(function(p,k){p.classList.toggle('on',k===n)});
+  btitle.innerHTML='coberturas · <b>'+COB[n].t+'</b>';
+  if(scrollTab&&tabs.scrollWidth>tabs.clientWidth){
+    var b=tabEls[n];
+    tabs.scrollTo({left:b.offsetLeft-(tabs.clientWidth-b.offsetWidth)/2,behavior:'smooth'});
+  }
+}
+
+tabEls.forEach(function(b){
+  b.onclick=function(){setOn(+b.dataset.n,true)};
+  b.onkeydown=function(e){
+    var n=+b.dataset.n,next=null;
+    if(e.key==='ArrowRight')next=(n+1)%COB.length;
+    else if(e.key==='ArrowLeft')next=(n-1+COB.length)%COB.length;
+    else if(e.key==='Home')next=0;
+    else if(e.key==='End')next=COB.length-1;
+    if(next!==null){e.preventDefault();setOn(next,true);tabEls[next].focus()}
+  };
+});
+
+setOn(0,false);
 
 // contador 0 -> 20 (selo)
 function count(el){
