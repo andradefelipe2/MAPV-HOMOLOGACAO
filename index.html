@@ -22,7 +22,7 @@ document.documentElement.setAttribute('data-theme',t);})();
 :root[data-theme=light]{--bg:#F6F3EA;--bg2:#FFFFFF;--tx:#172119;--mute:#5C6E62;--line:rgba(176,141,79,.4)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{font-family:Inter,sans-serif;background:var(--bg);color:var(--tx);line-height:1.65;transition:background .3s,color .3s;padding-bottom:env(safe-area-inset-bottom,0)}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--tx);line-height:1.65;transition:background .3s,color .3s;padding-bottom:env(safe-area-inset-bottom,0);overflow-x:hidden}
 h1,h2,h3,.brand{font-family:Marcellus,serif;font-weight:400}
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
@@ -52,57 +52,88 @@ nav{position:fixed;inset:0 0 auto;z-index:50;background:color-mix(in srgb,var(--
 .ghost:hover{background:rgba(176,141,79,.1)}
 
 /* hero */
-.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;background:radial-gradient(circle at 78% 30%,rgba(211,183,120,.13),transparent 55%)}
-.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.08;letter-spacing:-.01em}
+.hero{
+  position:relative;
+  padding:130px 0 80px;
+  background:
+    radial-gradient(ellipse 70% 55% at 82% 30%, rgba(211,183,120,.10), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(176,141,79,.06), transparent 65%);
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(38px,5.6vw,66px);line-height:1.06;letter-spacing:-.015em}
 .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.12em}
 .hero h1 .w i{display:inline-block;font-style:normal;transform:translateY(105%);animation:up .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*70ms)}
-.hero h1 .g{color:var(--gold)}
+.hero h1 .g{color:var(--gold);font-style:italic;padding-right:.06em}
 @keyframes up{to{transform:none}}
-.hero p.lead{margin-top:22px;color:var(--mute);font-size:17px;max-width:44ch}
-.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.viz{position:relative;justify-self:center;width:min(100%,380px)}
-.viz svg{width:100%;height:auto;overflow:visible}
+.hero p.lead{margin-top:24px;color:var(--mute);font-size:17px;max-width:46ch;line-height:1.7}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.hero-viz{position:relative;justify-self:center;width:min(100%,320px);aspect-ratio:1/1.15}
+.hero-viz svg{width:100%;height:100%;overflow:visible}
+.hero-viz::before{
+  content:"";position:absolute;inset:8% -12%;
+  background:radial-gradient(circle at center, rgba(211,183,120,.14), transparent 62%);
+  pointer-events:none;z-index:-1;
+}
 .sh{fill:none;stroke:var(--gold);stroke-linejoin:round;stroke-linecap:round}
 .sh path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s ease forwards;animation-delay:calc(.3s + var(--d)*.35s)}
-.sh.s2{opacity:.65}.sh.s3{opacity:.4}
+.sh.s2{opacity:.6}.sh.s3{opacity:.35}
 .ck{fill:none;stroke:var(--gold2);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .8s ease 1.9s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
-.chip{position:absolute;display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid var(--line);background:var(--bg2);border-radius:99px;font-size:13px;opacity:0;animation:pop .6s ease forwards,fl 6s ease-in-out infinite;animation-delay:calc(2.2s + var(--k)*.15s),calc(2.8s + var(--k)*.4s)}
-.chip svg{width:15px;height:15px;color:var(--gold)}
-@keyframes pop{to{opacity:1}}
-@keyframes fl{50%{transform:translateY(-7px)}}
+
+/* hero tags - faixa de coberturas */
+.hero-tags{
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin-top:72px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.hero-tags li{
+  display:flex;align-items:center;gap:14px;
+  padding:22px 24px;
+  border-right:1px solid var(--line);
+  position:relative;
+}
+.hero-tags li:first-child{padding-left:0}
+.hero-tags li:last-child{border-right:0;padding-right:0}
+.hero-tags li > i,.hero-tags li > svg{width:22px;height:22px;color:var(--gold);flex:none}
+.hero-tags b{display:block;font-family:Marcellus,serif;font-weight:400;font-size:17px;line-height:1.15;color:var(--tx);letter-spacing:-.005em}
+.hero-tags span{display:block;font-size:12.5px;color:var(--mute);line-height:1.45;margin-top:3px;max-width:16ch}
 
 /* sobre */
 .sec{padding:110px 0}
-.sobre .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+.sobre .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:start}
 h2{font-size:clamp(28px,4vw,44px);line-height:1.15}
 .role{color:var(--gold);margin-top:10px;font-size:15px}
-.stat{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-.stat b{
-  display:inline-block;
-  font-family:Inter,sans-serif;
-  font-weight:600;
-  font-size:clamp(56px,8vw,86px);
-  line-height:.9;
-  letter-spacing:-.05em;
+
+/* selo +20 anos */
+.cred{display:flex;align-items:center;gap:26px;margin-top:44px;padding-top:34px;border-top:1px solid var(--line)}
+.seal{
+  width:132px;height:132px;flex:none;position:relative;
+  display:grid;place-items:center;
   color:var(--gold);
-  font-variant-numeric:tabular-nums;
-  font-feature-settings:"tnum" 1,"lnum" 1;
 }
-.stat b .plus{
-  font-size:.44em;
-  font-weight:500;
-  line-height:1;
-  letter-spacing:0;
-  color:var(--gold2);
-  vertical-align:.7em;
-  margin-right:.03em;
+.seal-ring{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;color:var(--gold)}
+.seal-core{position:relative;z-index:1;text-align:center;line-height:1}
+.seal-num{
+  display:flex;align-items:flex-start;justify-content:center;
+  font-family:Inter,sans-serif;font-weight:600;font-size:44px;line-height:1;
+  color:var(--gold);letter-spacing:-.055em;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1,"lnum" 1;
 }
-.stat b [data-count]{display:inline-block;min-width:2ch}
-.stat > span{color:var(--mute);font-size:15px;line-height:1.35}
+.seal-num .plus{font-size:.5em;font-weight:500;color:var(--gold2);letter-spacing:0;margin-top:.28em;margin-right:2px}
+.seal-num [data-count]{display:inline-block;min-width:2ch;text-align:center}
+.seal-lbl{
+  font-size:9px;font-weight:600;letter-spacing:.36em;
+  text-transform:uppercase;color:var(--gold);
+  margin-top:9px;padding-left:.36em;
+}
+.cred-txt b{display:block;font-family:Marcellus,serif;font-weight:400;font-size:23px;line-height:1.15;color:var(--tx);letter-spacing:-.01em}
+.cred-txt span{display:block;font-size:14px;color:var(--mute);margin-top:5px;line-height:1.55;max-width:26ch}
+
 .sobre p.t{font-size:18px;color:var(--mute);max-width:56ch}
-.pill{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.pill{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
 .pill div{border-top:1px solid var(--line);padding-top:16px}
 .pill h3{font-size:18px;margin-bottom:6px}
 .pill p{font-size:14px;color:var(--mute)}
@@ -162,11 +193,19 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
 .rv{opacity:0;transform:translateY(18px);transition:opacity .8s,transform .8s}
 .rv.in{opacity:1;transform:none}
 
+@media(max-width:960px){
+ .hero-grid{grid-template-columns:1fr;gap:48px}
+ .hero{padding:110px 0 60px}
+ .hero-viz{width:min(72%,280px);aspect-ratio:1/1.1}
+ .hero-tags{grid-template-columns:1fr 1fr;margin-top:52px}
+ .hero-tags li{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 20px}
+ .hero-tags li:nth-child(2n){border-right:0;padding-right:0}
+ .hero-tags li:nth-child(2n+1){padding-left:0}
+ .hero-tags li:nth-child(n+3){border-bottom:0}
+}
 @media(max-width:860px){
  .links{display:none}
- .hero .wrap,.sobre .wrap,.ct .wrap,.cv{grid-template-columns:1fr;gap:40px}
- .hero{min-height:auto}
- .viz{width:min(78%,300px)}
+ .sobre .wrap,.ct .wrap,.cv{grid-template-columns:1fr;gap:40px}
  .sec{padding:80px 0}
  .side{top:64px;z-index:5;background:var(--bg2);padding:12px 0 4px;margin:0 -24px;padding-inline:24px}
  .big,.prog{display:none}
@@ -178,10 +217,16 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
  .steps li{padding:0 0 32px 36px}
  .steps li::before{top:4px}.steps li::after{top:9px;left:5px}
  .nav-r .btn{display:none}
+ .cred{gap:18px;margin-top:36px;padding-top:28px}
+ .seal{width:112px;height:112px}
+ .seal-num{font-size:36px}
+ .seal-lbl{font-size:8px;letter-spacing:.3em;margin-top:7px}
+ .cred-txt b{font-size:19px}
+ .cred-txt span{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){
  *{animation:none!important;transition:none!important}
- .hero h1 .w i{transform:none}.sh path,.ck{stroke-dashoffset:0}.chip,.rv{opacity:1;transform:none}
+ .hero h1 .w i{transform:none}.sh path,.ck{stroke-dashoffset:0}.rv{opacity:1;transform:none}
  .steps li::after{transform:scale(1)}
 }
 </style>
@@ -202,34 +247,59 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
 
 <main>
 <section class="hero" id="topo"><div class="wrap">
-  <div>
-    <h1 id="h1">Proteção pensada pra <span class="g">cada fase</span> da sua vida</h1>
-    <p class="lead">Seguro de casa, carro e vida, com orientação próxima, sem letra miúda, pra você escolher com clareza.</p>
-    <div class="ctas">
-      <a class="btn gold" href="https://wa.me/5511996917045?text=Ol%C3%A1%2C%20Am%C3%A9lia!%20Vim%20pelo%20seu%20site." target="_blank" rel="noopener">Falar no WhatsApp</a>
-      <a class="btn ghost" href="#coberturas">Ver coberturas</a>
+
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1 id="h1">Proteção pensada pra <span class="g">cada fase</span> da sua vida</h1>
+      <p class="lead">Seguro de casa, carro e vida, com orientação próxima, sem letra miúda, pra você escolher com clareza.</p>
+      <div class="ctas">
+        <a class="btn gold" href="https://wa.me/5511996917045?text=Ol%C3%A1%2C%20Am%C3%A9lia!%20Vim%20pelo%20seu%20site." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn ghost" href="#coberturas">Ver coberturas</a>
+      </div>
+    </div>
+
+    <div class="hero-viz" aria-hidden="true">
+      <svg viewBox="0 0 320 380">
+        <g class="sh s1" style="--d:0"><path pathLength="1" stroke-width="2" d="M160 14 L290 62 V182 C290 268 230 336 160 366 C90 336 30 268 30 182 V62 Z"/></g>
+        <g class="sh s2" style="--d:1"><path pathLength="1" stroke-width="1.6" d="M160 52 L256 88 V182 C256 246 212 296 160 320 C108 296 64 246 64 182 V88 Z"/></g>
+        <g class="sh s3" style="--d:2"><path pathLength="1" stroke-width="1.4" d="M160 88 L224 112 V182 C224 224 196 258 160 274 C124 258 96 224 96 182 V112 Z"/></g>
+        <path class="ck" pathLength="1" d="M128 184 L153 209 L196 160"/>
+      </svg>
     </div>
   </div>
-  <div class="viz" aria-hidden="true">
-    <svg viewBox="0 0 320 380">
-      <g class="sh s1" style="--d:0"><path pathLength="1" stroke-width="2" d="M160 14 L290 62 V182 C290 268 230 336 160 366 C90 336 30 268 30 182 V62 Z"/></g>
-      <g class="sh s2" style="--d:1"><path pathLength="1" stroke-width="1.6" d="M160 52 L256 88 V182 C256 246 212 296 160 320 C108 296 64 246 64 182 V88 Z"/></g>
-      <g class="sh s3" style="--d:2"><path pathLength="1" stroke-width="1.4" d="M160 88 L224 112 V182 C224 224 196 258 160 274 C124 258 96 224 96 182 V112 Z"/></g>
-      <path class="ck" pathLength="1" d="M128 184 L153 209 L196 160"/>
-    </svg>
-    <span class="chip" style="--k:0;top:8%;left:-6%"><i data-lucide="heart"></i>Vida</span>
-    <span class="chip" style="--k:1;top:30%;right:-8%"><i data-lucide="house"></i>Casa</span>
-    <span class="chip" style="--k:2;top:62%;left:-10%"><i data-lucide="car"></i>Carro</span>
-    <span class="chip" style="--k:3;bottom:2%;right:-2%"><i data-lucide="sprout"></i>Previdência</span>
-  </div>
+
+  <ul class="hero-tags">
+    <li><i data-lucide="heart"></i><div><b>Vida</b><span>pra quem depende de você</span></div></li>
+    <li><i data-lucide="house"></i><div><b>Casa</b><span>o maior patrimônio da família</span></div></li>
+    <li><i data-lucide="car"></i><div><b>Carro</b><span>imprevisto na estrada</span></div></li>
+    <li><i data-lucide="sprout"></i><div><b>Previdência</b><span>o amanhã com mais folga</span></div></li>
+  </ul>
+
 </div></section>
 
 <section class="sec sobre" id="sobre"><div class="wrap">
   <div>
     <h2 class="rv">Maria Amélia Pereira Veiga</h2>
     <p class="role rv">Corretora de seguros e consultora financeira</p>
-    <div class="stat rv"><b><span class="plus">+</span><span data-count="20">20</span></b><span>anos de experiência</span></div>
+
+    <div class="cred rv">
+      <div class="seal" aria-hidden="true">
+        <svg class="seal-ring" viewBox="0 0 132 132" fill="none">
+          <circle cx="66" cy="66" r="62" stroke="currentColor" stroke-width="1" opacity=".4"/>
+          <circle cx="66" cy="66" r="55" stroke="currentColor" stroke-width="1" stroke-dasharray="2 5" opacity=".75"/>
+        </svg>
+        <div class="seal-core">
+          <div class="seal-num"><span class="plus">+</span><span data-count="20">0</span></div>
+          <div class="seal-lbl">Anos</div>
+        </div>
+      </div>
+      <div class="cred-txt">
+        <b>de experiência</b>
+        <span>em seguros, previdência e proteção patrimonial</span>
+      </div>
+    </div>
   </div>
+
   <div>
     <p class="t rv">Especializada em proteção patrimonial e pessoal. O trabalho começa sempre pela mesma pergunta: o que realmente importa proteger na sua rotina? A partir disso, a indicação de cobertura e planejamento fica sob medida, sem pacote genérico nem venda empurrada.</p>
     <div class="pill">
@@ -323,7 +393,7 @@ var po=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 ps.forEach(function(p){po.observe(p)});setOn(0);
 bs.forEach(function(b){b.onclick=function(){ps[+b.dataset.n].scrollIntoView({behavior:'smooth',block:'center'})}});
 
-// contador 0 -> 20
+// contador 0 -> 20 (selo)
 function count(el){
   var end=+el.dataset.count||0;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=end;return}
