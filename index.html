@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amélia Veiga · Seguros e Planejamento Financeiro</title>
+<meta name="description" content="Seguro de casa, carro, vida e odontológico, previdência e consultoria financeira, com orientação próxima e sem letra miúda. +20 anos de experiência.">
+<meta name="theme-color" content="#0E1F1A">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/andradefelipe2/MAPV/main/favicon.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/andradefelipe2/MAPV/main/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('av-theme')}catch(e){}
+if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+document.documentElement.setAttribute('data-theme',t);})();
+</script>
+<style>
+:root{--bg:#0E1F1A;--bg2:#16281F;--gold:#B08D4F;--gold2:#D3B778;--tx:#F0ECE0;--mute:#9FB0A4;--line:rgba(176,141,79,.26)}
+:root[data-theme=light]{--bg:#F6F3EA;--bg2:#FFFFFF;--tx:#172119;--mute:#5C6E62;--line:rgba(176,141,79,.4)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--tx);line-height:1.65;transition:background .3s,color .3s;padding-bottom:env(safe-area-inset-bottom,0)}
+h1,h2,h3,.brand{font-family:Marcellus,serif;font-weight:400}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+svg.lucide{stroke-width:1.6}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:21px}
+.brand em{font-style:normal;color:var(--gold)}
+.logo{width:38px;height:38px;border-radius:50%;padding:4px;background:#fff;border:1px solid var(--line);flex:none}
+:root[data-theme=dark] .logo{background:linear-gradient(135deg,var(--gold2),var(--gold))}
+.logo img{width:100%;height:100%;object-fit:contain;border-radius:50%;display:block}
+.links{display:flex;gap:28px;font-size:14px}
+.links a{text-decoration:none;color:var(--mute);transition:color .2s}
+.links a:hover{color:var(--tx)}
+.nav-r{display:flex;align-items:center;gap:10px}
+.tt{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--gold);cursor:pointer;display:grid;place-items:center}
+.tt svg{width:17px;height:17px}
+.tt .sun{display:none}
+[data-theme=dark] .tt .sun{display:block}[data-theme=dark] .tt .moon{display:none}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font-weight:600;font-size:14.5px;text-decoration:none;transition:transform .15s,background .2s}
+.btn:active{transform:scale(.97)}
+.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1A1305}
+.ghost{border:1px solid var(--line);color:var(--tx)}
+.ghost:hover{background:rgba(176,141,79,.1)}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;background:radial-gradient(circle at 78% 30%,rgba(211,183,120,.13),transparent 55%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.08;letter-spacing:-.01em}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.12em}
+.hero h1 .w i{display:inline-block;font-style:normal;transform:translateY(105%);animation:up .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*70ms)}
+.hero h1 .g{color:var(--gold)}
+@keyframes up{to{transform:none}}
+.hero p.lead{margin-top:22px;color:var(--mute);font-size:17px;max-width:44ch}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.viz{position:relative;justify-self:center;width:min(100%,380px)}
+.viz svg{width:100%;height:auto;overflow:visible}
+.sh{fill:none;stroke:var(--gold);stroke-linejoin:round;stroke-linecap:round}
+.sh path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s ease forwards;animation-delay:calc(.3s + var(--d)*.35s)}
+.sh.s2{opacity:.65}.sh.s3{opacity:.4}
+.ck{fill:none;stroke:var(--gold2);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .8s ease 1.9s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.chip{position:absolute;display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid var(--line);background:var(--bg2);border-radius:99px;font-size:13px;opacity:0;animation:pop .6s ease forwards,fl 6s ease-in-out infinite;animation-delay:calc(2.2s + var(--k)*.15s),calc(2.8s + var(--k)*.4s)}
+.chip svg{width:15px;height:15px;color:var(--gold)}
+@keyframes pop{to{opacity:1}}
+@keyframes fl{50%{transform:translateY(-7px)}}
+
+/* sobre */
+.sec{padding:110px 0}
+.sobre .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+h2{font-size:clamp(28px,4vw,44px);line-height:1.15}
+.role{color:var(--gold);margin-top:10px;font-size:15px}
+.stat{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:12px}
+.stat b{font-family:Marcellus,serif;font-weight:400;font-size:76px;line-height:1;color:var(--gold)}
+.stat span{color:var(--mute);font-size:15px}
+.sobre p.t{font-size:18px;color:var(--mute);max-width:56ch}
+.pill{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.pill div{border-top:1px solid var(--line);padding-top:16px}
+.pill h3{font-size:18px;margin-bottom:6px}
+.pill p{font-size:14px;color:var(--mute)}
+
+/* coberturas */
+.cob{background:var(--bg2);border-block:1px solid var(--line)}
+.cob-h{max-width:560px;margin-bottom:56px}
+.cob-h p{color:var(--mute);margin-top:14px}
+.cv{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px}
+.side{position:sticky;top:96px;align-self:start}
+.big{width:120px;height:120px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold);position:relative;margin-bottom:28px}
+.big::after{content:"";position:absolute;inset:-12px;border-radius:50%;border:1px solid var(--line)}
+.big svg{width:48px;height:48px}
+.big svg{transition:opacity .25s}
+.prog{height:2px;background:var(--line);margin:0 0 20px;position:relative}
+.prog i{position:absolute;inset:0 auto 0 0;width:0;background:var(--gold);transition:width .5s ease}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{display:flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--line);background:none;color:var(--mute);border-radius:99px;font:500 13.5px Inter,sans-serif;cursor:pointer;transition:all .25s}
+.chips button svg{width:15px;height:15px}
+.chips button.on{background:linear-gradient(135deg,var(--gold2),var(--gold));border-color:transparent;color:#1A1305}
+.panels{display:flex;flex-direction:column}
+.panel{min-height:64vh;display:flex;flex-direction:column;justify-content:center;padding:36px 0;border-top:1px solid var(--line);opacity:.3;transition:opacity .5s}
+.panel.on{opacity:1}
+.panel small{color:var(--gold);font-size:13px;font-weight:600}
+.panel h3{font-size:clamp(30px,4vw,46px);margin:8px 0 16px}
+.panel .d{font-size:18px;max-width:46ch}
+.why{margin-top:26px;padding-left:18px;border-left:2px solid var(--gold);max-width:52ch}
+.why b{display:block;font-size:14px;color:var(--gold);margin-bottom:4px}
+.why p{color:var(--mute);font-size:15px}
+.more{margin-top:26px;font-weight:600;color:var(--gold2);text-decoration:none;border-bottom:1px solid var(--line);align-self:flex-start;padding-bottom:2px}
+
+/* passos */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:var(--line)}
+.steps li{list-style:none;padding:44px 32px 0 0;position:relative}
+.steps li::before{content:"";position:absolute;top:0;left:0;width:19px;height:19px;border-radius:50%;background:var(--bg);border:1px solid var(--gold)}
+.steps li::after{content:"";position:absolute;top:5px;left:5px;width:9px;height:9px;border-radius:50%;background:var(--gold);transform:scale(0);transition:transform .5s ease calc(var(--i)*.35s)}
+.steps.in li::after{transform:scale(1)}
+.steps h3{font-size:24px;margin-bottom:8px}
+.steps p{color:var(--mute);font-size:15px;max-width:30ch}
+
+/* contato */
+.ct{background:var(--bg2);border-top:1px solid var(--line)}
+.ct .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.ct p{color:var(--mute);margin:14px 0 28px}
+.rows a{display:flex;gap:16px;align-items:center;padding:20px 0;border-top:1px solid var(--line);text-decoration:none}
+.rows a:last-child{border-bottom:1px solid var(--line)}
+.rows svg{width:22px;height:22px;color:var(--gold);flex:none}
+.rows b{display:block;font-weight:500;font-size:17px;overflow-wrap:anywhere}
+.rows span{font-size:13px;color:var(--mute)}
+footer{padding:28px 0;border-top:1px solid var(--line);color:var(--mute);font-size:13px;text-align:center}
+footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
+.wa{position:fixed;right:20px;bottom:calc(22px + env(safe-area-inset-bottom,0));width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.35);z-index:60}
+.wa svg{width:30px;height:30px;fill:#fff}
+
+/* reveal só onde importa */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s,transform .8s}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:860px){
+ .links{display:none}
+ .hero .wrap,.sobre .wrap,.ct .wrap,.cv{grid-template-columns:1fr;gap:40px}
+ .hero{min-height:auto}
+ .viz{width:min(78%,300px)}
+ .sec{padding:80px 0}
+ .side{top:64px;z-index:5;background:var(--bg2);padding:12px 0 4px;margin:0 -24px;padding-inline:24px}
+ .big,.prog{display:none}
+ .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+ .chips button{flex:none}
+ .panel{min-height:55vh}
+ .pill,.steps{grid-template-columns:1fr}
+ .steps::before{display:none}
+ .steps li{padding:0 0 32px 36px}
+ .steps li::before{top:4px}.steps li::after{top:9px;left:5px}
+ .nav-r .btn{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ *{animation:none!important;transition:none!important}
+ .hero h1 .w i{transform:none}.sh path,.ck{stroke-dashoffset:0}.chip,.rv{opacity:1;transform:none}
+ .steps li::after{transform:scale(1)}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav">
+  <a class="brand" href="#topo" aria-label="Amélia Veiga, início">
+    <span class="logo"><img src="https://raw.githubusercontent.com/andradefelipe2/MAPV/main/og-image.png" alt="MAPV"></span>
+    <span>Amélia <em>Veiga</em></span>
+  </a>
+  <div class="links"><a href="#sobre">Sobre</a><a href="#coberturas">Coberturas</a><a href="#comeca">Como começa</a><a href="#contato">Contato</a></div>
+  <div class="nav-r">
+    <button class="tt" id="tt" type="button" aria-label="Alternar tema claro e escuro"><i data-lucide="sun" class="sun"></i><i data-lucide="moon" class="moon"></i></button>
+    <a class="btn gold" href="https://wa.me/5511996917045?text=Ol%C3%A1%2C%20Am%C3%A9lia!%20Vim%20pelo%20seu%20site." target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</div></nav>
+
+<main>
+<section class="hero" id="topo"><div class="wrap">
+  <div>
+    <h1 id="h1">Proteção pensada pra <span class="g">cada fase</span> da sua vida</h1>
+    <p class="lead">Seguro de casa, carro e vida, com orientação próxima, sem letra miúda, pra você escolher com clareza.</p>
+    <div class="ctas">
+      <a class="btn gold" href="https://wa.me/5511996917045?text=Ol%C3%A1%2C%20Am%C3%A9lia!%20Vim%20pelo%20seu%20site." target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <a class="btn ghost" href="#coberturas">Ver coberturas</a>
+    </div>
+  </div>
+  <div class="viz" aria-hidden="true">
+    <svg viewBox="0 0 320 380">
+      <g class="sh s1" style="--d:0"><path pathLength="1" stroke-width="2" d="M160 14 L290 62 V182 C290 268 230 336 160 366 C90 336 30 268 30 182 V62 Z"/></g>
+      <g class="sh s2" style="--d:1"><path pathLength="1" stroke-width="1.6" d="M160 52 L256 88 V182 C256 246 212 296 160 320 C108 296 64 246 64 182 V88 Z"/></g>
+      <g class="sh s3" style="--d:2"><path pathLength="1" stroke-width="1.4" d="M160 88 L224 112 V182 C224 224 196 258 160 274 C124 258 96 224 96 182 V112 Z"/></g>
+      <path class="ck" pathLength="1" d="M128 184 L153 209 L196 160"/>
+    </svg>
+    <span class="chip" style="--k:0;top:8%;left:-6%"><i data-lucide="heart"></i>Vida</span>
+    <span class="chip" style="--k:1;top:30%;right:-8%"><i data-lucide="house"></i>Casa</span>
+    <span class="chip" style="--k:2;top:62%;left:-10%"><i data-lucide="car"></i>Carro</span>
+    <span class="chip" style="--k:3;bottom:2%;right:-2%"><i data-lucide="sprout"></i>Previdência</span>
+  </div>
+</div></section>
+
+<section class="sec sobre" id="sobre"><div class="wrap">
+  <div>
+    <h2 class="rv">Maria Amélia Pereira Veiga</h2>
+    <p class="role rv">Corretora de seguros e consultora financeira</p>
+    <div class="stat rv"><b>+<span data-count="20">20</span></b><span>anos de experiência</span></div>
+  </div>
+  <div>
+    <p class="t rv">Especializada em proteção patrimonial e pessoal. O trabalho começa sempre pela mesma pergunta: o que realmente importa proteger na sua rotina? A partir disso, a indicação de cobertura e planejamento fica sob medida, sem pacote genérico nem venda empurrada.</p>
+    <div class="pill">
+      <div class="rv"><h3>Sob medida</h3><p>A indicação nasce da sua rotina, não de um pacote.</p></div>
+      <div class="rv"><h3>Sem pacote genérico</h3><p>Cobertura que faz sentido pra você, e só ela.</p></div>
+      <div class="rv"><h3>Sem venda empurrada</h3><p>Você escolhe com clareza, com orientação de perto.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec cob" id="coberturas"><div class="wrap">
+  <div class="cob-h"><h2 class="rv">Camadas de proteção, de dentro pra fora</h2><p class="rv">Tudo começa em você. Cada cobertura é uma camada a mais entre a sua rotina e o imprevisto.</p></div>
+  <div class="cv">
+    <div class="side">
+      <div class="big" id="big"></div>
+      <div class="prog"><i id="prog"></i></div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="panels" id="panels"></div>
+  </div>
+</div></section>
+
+<section class="sec" id="comeca"><div class="wrap">
+  <h2 class="rv">Três passos, nenhum deles é uma venda</h2>
+  <ol class="steps" id="steps">
+    <li style="--i:0"><h3>A pergunta</h3><p>O que realmente importa proteger na sua rotina?</p></li>
+    <li style="--i:1"><h3>A análise</h3><p>Seguros que você já tem, patrimônio e objetivos, olhados juntos.</p></li>
+    <li style="--i:2"><h3>A indicação</h3><p>Cobertura e planejamento sob medida, sem letra miúda.</p></li>
+  </ol>
+</div></section>
+
+<section class="sec ct" id="contato"><div class="wrap">
+  <div>
+    <h2 class="rv">Vamos começar pela pergunta certa</h2>
+    <p class="rv">Mande uma mensagem. A conversa é sem compromisso e sem pressa.</p>
+    <a class="btn gold rv" href="https://wa.me/5511996917045?text=Ol%C3%A1%2C%20Am%C3%A9lia!%20Gostaria%20de%20conversar%20sobre%20o%20seguro%20certo%20pra%20mim." target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
+  <div class="rows rv">
+    <a href="https://wa.me/5511996917045" target="_blank" rel="noopener"><i data-lucide="phone"></i><div><b>(11) 99691-7045</b><span>WhatsApp</span></div></a>
+    <a href="mailto:amelia.veiga@hotmail.com"><i data-lucide="mail"></i><div><b>amelia.veiga@hotmail.com</b><span>E-mail</span></div></a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="brand"><span>Amélia <em>Veiga</em></span></div>
+  Maria Amélia Pereira Veiga (MAPV), Corretora de Seguros
+</div></footer>
+
+<a class="wa" href="https://wa.me/5511996917045?text=Ol%C3%A1%2C%20Am%C3%A9lia!%20Vim%20pelo%20seu%20site." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.8a9.9 9.9 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88zM20.46 3.49A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42z"/></svg>
+</a>
+
+<script>
+var COB=[
+ {i:'heart',t:'Seguro Vida',g:'Pessoas',d:'Proteção financeira pra quem depende de você, com cobertura por morte, invalidez e diárias por incapacidade temporária.',w:'Não é sobre pensar no pior cenário, é sobre garantir que família, filhos ou dependentes não fiquem financeiramente desamparados diante de um imprevisto. É o único seguro que protege pessoas, não bens.'},
+ {i:'smile',t:'Odontológico',g:'Pessoas',d:'Cobertura para consultas, manutenção preventiva e procedimentos odontológicos mais complexos.',w:'Tratamentos dentários de urgência ou mais complexos costumam pesar no orçamento quando surgem sem aviso. Um plano evita que isso vire um problema financeiro, além de incentivar a prevenção.'},
+ {i:'shield-check',t:'Proteção Financeira',g:'Renda',d:'Estratégias e produtos voltados a proteger renda e patrimônio diante de imprevistos: doença, invalidez ou perda de renda.',w:'Complementa o seguro de vida cobrindo cenários que ele sozinho não cobre, como a perda temporária da capacidade de trabalhar, mantendo as contas em dia mesmo num momento difícil.'},
+ {i:'house',t:'Seguro Casa',g:'Patrimônio',d:'Cobertura contra incêndio, roubo, danos elétricos e desastres naturais, protegendo tanto o imóvel quanto os bens dentro dele.',w:'A casa costuma ser o maior patrimônio de uma família. Um incêndio, um vazamento grave ou um roubo podem representar um prejuízo que leva anos pra recuperar sem seguro. Com ele, o impacto financeiro de um imprevisto vira algo administrável.'},
+ {i:'car',t:'Seguro Carro',g:'Patrimônio',d:'Cobertura contra colisão, roubo, furto e terceiros, com assistência 24h pra imprevistos na estrada.',w:'Um acidente ou roubo de veículo pode gerar um custo muito acima do valor de mercado do carro, somando reparo, indenização a terceiros e processos. O seguro transforma um imprevisto caro em uma franquia previsível.'},
+ {i:'sprout',t:'Previdência Privada',g:'Futuro',d:'Complementa a aposentadoria pública, com aportes programados que rendem ao longo do tempo.',w:'A previdência pública sozinha raramente mantém o padrão de vida desejado na aposentadoria. Começar cedo, mesmo com aportes pequenos, faz diferença grande no valor acumulado lá na frente.'},
+ {i:'clipboard-list',t:'Consultoria',g:'O plano',d:'Análise personalizada da sua situação (seguros existentes, patrimônio e objetivos) pra montar um plano de proteção sob medida.',w:'Cada família tem prioridades diferentes. A consultoria evita contratar cobertura genérica ou redundante, otimizando o que você já paga em vez de simplesmente somar mais um produto.'}
+];
+var WA='https://wa.me/5511996917045?text=';
+var panels=document.getElementById('panels'),chips=document.getElementById('chips'),big=document.getElementById('big'),prog=document.getElementById('prog');
+COB.forEach(function(c,n){
+ panels.insertAdjacentHTML('beforeend','<article class="panel" data-n="'+n+'"><small>'+c.g+'</small><h3>'+c.t+'</h3><p class="d">'+c.d+'</p><div class="why"><b>Por que importa</b><p>'+c.w+'</p></div><a class="more" href="'+WA+encodeURIComponent('Olá, Amélia! Gostaria de conversar sobre '+c.t+'.')+'" target="_blank" rel="noopener">Quero falar sobre esta cobertura</a></article>');
+ chips.insertAdjacentHTML('beforeend','<button type="button" data-n="'+n+'"><i data-lucide="'+c.i+'"></i>'+c.t.replace('Seguro ','').replace(' Privada','').replace(' Financeira','')+'</button>');
+ big.insertAdjacentHTML('beforeend','<i data-lucide="'+c.i+'" style="position:absolute;opacity:0" data-b="'+n+'"></i>');
+});
+if(window.lucide)lucide.createIcons();
+
+// tema
+document.getElementById('tt').onclick=function(){var r=document.documentElement,n=r.getAttribute('data-theme')==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('av-theme',n)}catch(e){}};
+
+// título do hero, palavra por palavra
+(function(){var h=document.getElementById('h1'),i=0;
+ function walk(node){Array.prototype.slice.call(node.childNodes).forEach(function(c){
+  if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(p){
+   if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(' '));return}
+   var w=document.createElement('span');w.className='w';w.innerHTML='<i style="--i:'+(i++)+'">'+p+'</i>';f.appendChild(w)});c.replaceWith(f)}
+  else if(c.nodeType===1)walk(c)})}
+ walk(h)})();
+
+// cobertura ativa conforme o scroll
+var ps=[].slice.call(document.querySelectorAll('.panel')),bs=[].slice.call(chips.children),bg=[].slice.call(big.children);
+function setOn(n){ps.forEach(function(p,k){p.classList.toggle('on',k===n)});bs.forEach(function(b,k){b.classList.toggle('on',k===n)});
+ bg.forEach(function(b,k){b.style.opacity=k===n?1:0});prog.style.width=((n+1)/COB.length*100)+'%';
+ if(matchMedia('(max-width:860px)').matches){bs[n].scrollIntoView({inline:'center',block:'nearest'})}}
+var po=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setOn(+e.target.dataset.n)})},{rootMargin:'-42% 0px -42% 0px'});
+ps.forEach(function(p){po.observe(p)});setOn(0);
+bs.forEach(function(b){b.onclick=function(){ps[+b.dataset.n].scrollIntoView({behavior:'smooth',block:'center'})}});
+
+// reveal e contador
+function count(el){var end=+el.dataset.count,t0=performance.now();
+ (function tick(t){var p=Math.min((t-t0)/1600,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(t0)}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;
+ e.target.classList.add('in');var c=e.target.querySelector('[data-count]');if(c&&!matchMedia('(prefers-reduced-motion: reduce)').matches){c.textContent=0;count(c)}
+ io.unobserve(e.target)})},{threshold:.3});
+document.querySelectorAll('.rv,#steps').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
