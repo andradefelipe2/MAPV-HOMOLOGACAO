@@ -67,18 +67,66 @@ nav{position:fixed;inset:0 0 auto;z-index:50;background:color-mix(in srgb,var(--
 @keyframes up{to{transform:none}}
 .hero p.lead{margin-top:24px;color:var(--mute);font-size:17px;max-width:46ch;line-height:1.7}
 .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
-.hero-viz{position:relative;justify-self:center;width:min(100%,320px);aspect-ratio:1/1.15}
-.hero-viz svg{width:100%;height:100%;overflow:visible}
+
+/* viz */
+.hero-viz{
+  position:relative;
+  justify-self:center;
+  width:min(100%,340px);
+  aspect-ratio:320/380;
+  overflow:visible;
+}
+.hero-viz svg{width:100%;height:100%;overflow:visible;position:relative;z-index:1}
 .hero-viz::before{
-  content:"";position:absolute;inset:8% -12%;
-  background:radial-gradient(circle at center, rgba(211,183,120,.14), transparent 62%);
-  pointer-events:none;z-index:-1;
+  content:"";position:absolute;inset:8% -14%;
+  background:radial-gradient(circle at center, rgba(211,183,120,.13), transparent 62%);
+  pointer-events:none;z-index:0;
 }
 .sh{fill:none;stroke:var(--gold);stroke-linejoin:round;stroke-linecap:round}
 .sh path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s ease forwards;animation-delay:calc(.3s + var(--d)*.35s)}
 .sh.s2{opacity:.6}.sh.s3{opacity:.35}
 .ck{fill:none;stroke:var(--gold2);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .8s ease 1.9s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
+
+/* shield animated coverages */
+.shield-icons{
+  position:absolute;inset:0;
+  pointer-events:none;
+  z-index:2;
+  overflow:visible;
+}
+.shield-icon{
+  position:absolute;
+  width:34px;height:34px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  transform:translate(-50%,-50%) scale(.65);
+  opacity:.22;
+  color:var(--gold);
+  background:var(--bg);
+  border:1px solid var(--line);
+  transition:opacity .55s cubic-bezier(.2,.7,.2,1),
+             transform .55s cubic-bezier(.2,.7,.2,1),
+             border-color .55s, box-shadow .55s, color .55s;
+  will-change:opacity, transform;
+}
+.shield-icon svg{width:15px;height:15px}
+.shield-icon.on{
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1);
+  border-color:var(--gold);
+  color:var(--gold2);
+  box-shadow:0 0 0 4px rgba(176,141,79,.13), 0 0 22px rgba(211,183,120,.4);
+}
+.traveler-glow{
+  fill:var(--gold);
+  opacity:.28;
+  filter:blur(3px);
+}
+.traveler{
+  fill:var(--gold2);
+  filter:drop-shadow(0 0 5px rgba(211,183,120,.95));
+}
 
 /* hero tags */
 .hero-tags{
@@ -201,8 +249,7 @@ h2{font-size:clamp(28px,4vw,44px);line-height:1.15}
 .view{
   padding:clamp(28px,4.5vw,56px) clamp(22px,4.5vw,56px) clamp(34px,4.5vw,56px);
   min-height:440px;
-  background:
-    radial-gradient(ellipse 60% 60% at 100% 0%, rgba(211,183,120,.06), transparent 60%);
+  background:radial-gradient(ellipse 60% 60% at 100% 0%, rgba(211,183,120,.06), transparent 60%);
 }
 .panel{display:none}
 .panel.on{display:block;animation:fade .45s cubic-bezier(.2,.7,.2,1)}
@@ -275,7 +322,7 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
 @media(max-width:960px){
  .hero-grid{grid-template-columns:1fr;gap:48px}
  .hero{padding:110px 0 60px}
- .hero-viz{width:min(72%,280px);aspect-ratio:1/1.1}
+ .hero-viz{width:min(74%,290px)}
  .hero-tags{grid-template-columns:1fr 1fr;margin-top:52px}
  .hero-tags li{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 20px}
  .hero-tags li:nth-child(2n){border-right:0;padding-right:0}
@@ -307,12 +354,15 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
  .panel-ico svg{width:21px;height:21px}
  .panel .d{font-size:16px}
  .why{padding:16px 18px}
+ .shield-icon{width:28px;height:28px}
+ .shield-icon svg{width:13px;height:13px}
 }
 @media(prefers-reduced-motion:reduce){
  *{animation:none!important;transition:none!important}
  .hero h1 .w i{transform:none}.sh path,.ck{stroke-dashoffset:0}.rv{opacity:1;transform:none}
  .steps li::after{transform:scale(1)}
  .panel.on{animation:none}
+ .shield-icon{transition:none}
 }
 </style>
 </head>
@@ -349,7 +399,10 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
         <g class="sh s2" style="--d:1"><path pathLength="1" stroke-width="1.6" d="M160 52 L256 88 V182 C256 246 212 296 160 320 C108 296 64 246 64 182 V88 Z"/></g>
         <g class="sh s3" style="--d:2"><path pathLength="1" stroke-width="1.4" d="M160 88 L224 112 V182 C224 224 196 258 160 274 C124 258 96 224 96 182 V112 Z"/></g>
         <path class="ck" pathLength="1" d="M128 184 L153 209 L196 160"/>
+        <circle id="travelerGlow" class="traveler-glow" r="9" cx="160" cy="52"/>
+        <circle id="traveler" class="traveler" r="3" cx="160" cy="52"/>
       </svg>
+      <div class="shield-icons" id="shieldIcons"></div>
     </div>
   </div>
 
@@ -529,6 +582,96 @@ tabEls.forEach(function(b){
 });
 
 setOn(0,false);
+
+// ---- escudo animado com coberturas ----
+(function(){
+  var svg = document.querySelector('.hero-viz svg');
+  if(!svg) return;
+  var path = svg.querySelector('.sh.s2 path');
+  if(!path || !path.getTotalLength) return;
+
+  var L = path.getTotalLength();
+  var dot = document.getElementById('traveler');
+  var glow = document.getElementById('travelerGlow');
+  var host = document.getElementById('shieldIcons');
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // mesma ordem do COB (7 coberturas)
+  var ICONS = ['heart','smile','shield-check','house','car','sprout','clipboard-list'];
+  var N = ICONS.length;
+
+  // centro aproximado do escudo (para deslocar os ícones pra fora da linha)
+  var CX = 160, CY = 190, OFFSET = 26;
+
+  var positions = [];
+  var icons = [];
+
+  for(var i=0;i<N;i++){
+    var t = (i + 0.5) / N;
+    var pt = path.getPointAtLength(t * L);
+    var dx = pt.x - CX, dy = pt.y - CY;
+    var m = Math.hypot(dx, dy) || 1;
+    var px = pt.x + (dx/m) * OFFSET;
+    var py = pt.y + (dy/m) * OFFSET;
+    positions.push(pt);
+
+    var el = document.createElement('div');
+    el.className = 'shield-icon';
+    el.style.left = (px / 320 * 100) + '%';
+    el.style.top  = (py / 380 * 100) + '%';
+    el.innerHTML = '<i data-lucide="' + ICONS[i] + '"></i>';
+    host.appendChild(el);
+    icons.push(el);
+  }
+  if(window.lucide) lucide.createIcons();
+
+  if(reduced){
+    icons[0].classList.add('on');
+    dot.setAttribute('cx', positions[0].x);
+    dot.setAttribute('cy', positions[0].y);
+    glow.setAttribute('cx', positions[0].x);
+    glow.setAttribute('cy', positions[0].y);
+    return;
+  }
+
+  var DUR = 24000; // 24s por volta completa (~3.4s por cobertura)
+  var t0 = null, lastIdx = -1;
+
+  function frame(t){
+    if(t0 === null) t0 = t;
+    var progress = ((t - t0) % DUR) / DUR;
+    var pt = path.getPointAtLength(progress * L);
+
+    dot.setAttribute('cx', pt.x);
+    dot.setAttribute('cy', pt.y);
+    glow.setAttribute('cx', pt.x);
+    glow.setAttribute('cy', pt.y);
+
+    var idx = Math.floor(progress * N) % N;
+    if(idx !== lastIdx){
+      if(lastIdx >= 0) icons[lastIdx].classList.remove('on');
+      icons[idx].classList.add('on');
+      lastIdx = idx;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // pausa quando sai da viewport (economia de bateria)
+  if('IntersectionObserver' in window){
+    var viz = document.querySelector('.hero-viz');
+    var running = true;
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting && !running){
+          running = true; t0 = null; requestAnimationFrame(frame);
+        } else if(!e.isIntersecting){
+          running = false;
+        }
+      });
+    },{threshold:0}).observe(viz);
+  }
+})();
 
 // contador 0 -> 20 (selo)
 function count(el){
